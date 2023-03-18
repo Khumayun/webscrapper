@@ -1,24 +1,19 @@
 import re
 
-from flask import Flask, jsonify
-
+from flask import jsonify
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
-app = Flask(__name__)
 
-
-@app.route('/')
-def home():  # put application's code here
+def scrape():  # put application's code here
 
 	# Set up the Chrome driver with Selenium
 	options = webdriver.ChromeOptions()
-	# options.headless = True
 	options.add_argument("--no-sandbox")
-	options.add_argument("--disable-dev-shm-usage")
-	driver_path = '/home/KhumoyunA/webscrapper/chromedriver'
-	driver = webdriver.Chrome(driver_path, options=options)
+	options.add_argument("--headless")
+	options.add_argument("--disable-gpu")
+	options.add_argument('--disable-dev-shm-usage')
+	driver = webdriver.Chrome(options=options)
 
 	# Define the URL of the page to scrape
 	url = 'https://e-auksion.uz/lots?group=27&category=103&index=1&lt=0&at=0&order=0'
@@ -66,8 +61,8 @@ def home():  # put application's code here
 		page_number += 1
 
 	driver.quit()
-	return jsonify(data)
+	open('result.txt', 'w').write(str(jsonify(data)))
 
 
 if __name__ == '__main__':
-	app.run()
+	scrape()
