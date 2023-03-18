@@ -13,8 +13,10 @@ app = Flask(__name__)
 def home():  # put application's code here
 
 	# Set up the Chrome driver with Selenium
-	options = Options()
-	options.headless = True
+	options = webdriver.ChromeOptions()
+	# options.headless = True
+	options.add_argument("--no-sandbox")
+	options.add_argument("--disable-dev-shm-usage")
 	driver_path = '/home/KhumoyunA/webscrapper/chromedriver'
 	driver = webdriver.Chrome(driver_path, options=options)
 
