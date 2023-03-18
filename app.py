@@ -1,11 +1,15 @@
 import re
 
-from flask import jsonify
+from flask import Flask, jsonify
+
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
+app = Flask(__name__)
 
-def scrape():  # put application's code here
+
+@app.route('/')
+def home():  # put application's code here
 
 	# Set up the Chrome driver with Selenium
 	options = webdriver.ChromeOptions()
@@ -61,8 +65,8 @@ def scrape():  # put application's code here
 		page_number += 1
 
 	driver.quit()
-	open('result.txt', 'w').write(str(jsonify(data)))
+	return jsonify(data)
 
 
 if __name__ == '__main__':
-	scrape()
+	app.run()
