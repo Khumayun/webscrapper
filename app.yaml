@@ -1,7 +1,10 @@
 runtime: python311
 
-entrypoint: gunicorn -b :$PORT main:app
+env_variables:
+  SECRET_KEY: "NkQ2PVrNpsWTxDAmMCDDzrkwbKHwspvy"
 
 handlers:
-- url: /.*
-  script: auto
+  - url: /.*
+    script: auto
+
+entrypoint: run.sh
