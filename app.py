@@ -15,7 +15,7 @@ def home():  # put application's code here
 	# Set up the Chrome driver with Selenium
 	options = Options()
 	options.headless = True
-	driver_path = './chromedriver'
+	driver_path = '/home/KhumoyunA/webscrapper/chromedriver'
 	driver = webdriver.Chrome(driver_path, options=options)
 
 	# Define the URL of the page to scrape
