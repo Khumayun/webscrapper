@@ -1,3 +1,4 @@
+import os
 import re
 
 from flask import Flask, jsonify
@@ -69,4 +70,4 @@ def home():  # put application's code here
 
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
